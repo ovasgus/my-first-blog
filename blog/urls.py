@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import include, path
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -11,3 +12,13 @@ urlpatterns = [
     path('post/<pk>/remove/', views.post_remove, name='post_remove'),
     path('loaderio-<id>/', views.verify_domain, name='verify_domain'),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+
+        # For django versions before 2.0:
+        # url(r'^__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns

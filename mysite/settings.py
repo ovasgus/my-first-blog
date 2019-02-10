@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'autofixture',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -104,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'de-ch'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'Europe/Zurich'
 
@@ -113,6 +116,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+INTERNAL_IPS = ['127.0.0.1', ]
+
+
+def show_toolbar(request):
+    return False
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+}
 
 
 # Static files (CSS, JavaScript, Images)
